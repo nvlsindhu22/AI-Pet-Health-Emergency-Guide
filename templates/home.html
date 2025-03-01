@@ -1,0 +1,125 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">
+  <link rel="stylesheet" href="{% static 'css/chatbot.css' %}">
+  <title>Pet Emergency Assistant with AI</title>
+</head>
+
+<body>
+  <!-- Header -->
+  <section id="header">
+    <div class="header container">
+      <div class="nav-bar">
+        <div class="brand">
+          <a href="#hero">
+            <h1><span>Pet</span> <span>BUDDY</span></h1>
+          </a>
+        </div>
+        <div class="nav-list">
+          <ul>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'login' %}">Login</a></li> 
+            <li><a href="{% url 'register' %}">Register</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+{% else %}
+    <li><a href="{% url 'login' %}">Login</a></li> 
+    <li><a href="{% url 'register' %}">Register</a></li>
+{% endif %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Hero Section -->
+  <section id="hero">
+    <div class="hero container">
+      <div>
+        <h1>Welcome to <span>Pet Emergency Assistant</span></h1>
+        <h2>AI-driven care for your furry friends</h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services">
+    <div class="services container">
+      <div class="service-top">
+        <h1 class="section-title">Our <span>Services</span></h1>
+        <p>Providing comprehensive care and assistance for your pets through AI-driven solutions.</p>
+      </div>
+      <br>
+      <div class="service-bottom">
+        <div class="service-item">
+          <div class="icon"><img src="..\static\images\pet1.png" alt="Pet Health Assistant"></div>
+          <h2>Pet Health Assistant</h2>
+          <p>Track your pet's health and receive timely reminders for vaccinations and checkups.</p>
+        </div>
+        <div class="service-item">
+          <div class="icon"><img src="..\static\images\pet2.png" alt="Emergency Assistance"></div>
+          <h2>Emergency Assistance</h2>
+          <p>AI-powered tools to help you respond to pet emergencies quickly and effectively.</p>
+        </div>
+        <div class="service-item">
+          <div class="icon"><img src="..\static\images\pet3.png" alt="AI Training Tips"></div>
+          <h2>AI Training Tips</h2>
+          <p>Personalized AI-generated training tips to improve your pet’s behavior and well-being.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Us Section -->
+  <section id="about-us">
+    <div class="about-us-container">
+        <h1 class="section-title">Welcome to Pet Emergency Assistant!</h1>
+        <p class="intro">Where Technology Meets Pet Care</p>
+        <div class="about-content">
+            <div class="about-left">
+                <h2>Our Mission</h2>
+                <p>We are a passionate team of <strong>pet lovers</strong>, <strong>tech enthusiasts</strong>, and <strong>health advocates</strong> who believe in the power of innovation to revolutionize pet care. Our vision is simple: to create a healthier, happier, and safer life for pets through the integration of <strong>Artificial Intelligence (AI)</strong>, <strong>smart technologies</strong>, and a deep understanding of animal health and well-being.</p>
+            </div>
+            <div class="about-right">
+                <h2>Why Choose Us?</h2>
+                <ul>
+                    <li><strong>AI-Powered Health Assistance</strong>: Track your pet's health data with timely reminders for vaccinations and checkups.</li>
+                    <li><strong>Instant Emergency Help</strong>: Quick access to veterinary clinics, first-aid tips, and 24/7 emergency assistance.</li>
+                    <li><strong>Personalized Pet Profiles</strong>: Create detailed profiles for your pets to track their health and receive customized care plans.</li>
+                    <li><strong>Trusted by Pet Parents Everywhere</strong>: Thousands of pet parents trust us to help care for their furry friends.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="about-footer">
+            <h2>Our Promise to You</h2>
+            <p>We are committed to providing reliable information, building a caring community, and continuously improving our services to ensure the health and happiness of your pets.</p>
+            <button class="cta-btn">Join Us in Creating a Better Future for Pets</button>
+        </div>
+    </div>
+</section>
+
+  
+<!-- Chatbot Icon Section -->
+<div id="chatbot-icon">
+  <a href="chatbot.html">
+    <img src="..\static\images\chat.png" alt="Chatbot" class="chat-icon">
+    <img src="..\static\images\paw.png" alt="Paw Icon" class="paw-icon">
+  </a>
+</div>
+
+
+
+  <!-- Footer -->
+  <section id="footer">
+    <div class="footer container">
+      <p>© 2025 Pet Emergency Assistant. All rights reserved.</p>
+    </div>
+  </section>
+</body>
+
+</html>

@@ -1,0 +1,251 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/health.css' %}">
+  <link rel="stylesheet" href="{% static 'css/chatbot.css' %}">
+  <title>Pet Health Assistant</title>
+  <style>
+    /* Form Styling */
+    .form-container {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      max-width: 500px ;
+      margin-top:20px;
+      margin: auto;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+      margin-top:20px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid #007bff;
+      border-radius: 5px;
+      font-size: 16px;
+      transition: 0.3s ease;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: #0056b3;
+      box-shadow: 0 0 5px rgba(0, 91, 187, 0.5);
+      outline: none;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #0056b3;
+    }
+
+    .loader {
+      display: none;
+      border: 4px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 4px solid #007bff;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 10px auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .ai-insights {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .ai-insights h2 {
+      text-align: center;
+      color: #007bff;
+    }
+
+    .ai-insights p {
+      font-size: 16px;
+      color: #333;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <section id="header">
+    <div class="header container">
+      <div class="nav-bar">
+        <div class="brand">
+          <a href="#hero">
+            <h1>Pet BUDDY</h1>
+          </a>
+        </div>
+        <div class="nav-list">
+          <ul>
+            <li><a href="{% url 'base' %}">Home</a></li>
+            <li><a href="#health-tracker">Health Tracker</a></li>
+            <li><a href="#symptom-checker">Symptom-Checker</a></li>
+            <li><a href="#photo-upload">Photo-Upload</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <div class="hero container">
+      <div>
+        <h1>Welcome to <span>Pet Health Assistant</span></h1>
+        <h2>Your pet's health, powered by AI</h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- Health Tracker Section -->
+  <section id="health-tracker">
+    <div class="health-tracker container">
+      <h1 class="section-title">Health <span>Tracker</span></h1>
+      <p>Track vaccinations, medical history, and receive personalized care tips based on AI analysis.</p>
+      <div class="tracker">
+        <div class="tracker-item">
+          <h2>Vaccination Status</h2>
+          <p>Upcoming: Rabies Vaccine - <strong>Due in 5 days</strong></p>
+          <button class="btn">Set Reminder</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="symptom-checker">
+    <div class="form-container">
+      <h2>Check Symptoms</h2>
+      <form id="symptom-form">
+        <div class="form-group"><label>Symptom 1:</label><input type="text" id="symptom1" required></div>
+        <div class="form-group"><label>Symptom 2:</label><input type="text" id="symptom2"></div>
+        <div class="form-group"><label>Symptom 3:</label><input type="text" id="symptom3"></div>
+        <button type="submit" class="btn">Analyze Symptoms</button>
+      </form>
+      <div class="loader" id="symptom-loader"></div>
+      <div id="symptom-result" class="ai-insights"></div>
+    </div>
+  </section>
+  
+  <section id="photo-upload">
+    <div class="form-container">
+      <h2>Upload Pet's Skin Image</h2>
+      <form id="photo-upload-form" enctype="multipart/form-data">
+        <div class="form-group"><label>Upload Image:</label><input type="file" accept="image/*" id="photo-upload-input" required></div>
+        <button type="submit" class="btn">Analyze Image</button>
+      </form>
+      <div class="loader" id="photo-loader"></div>
+      <div id="photo-result" class="ai-insights"></div>
+    </div>
+  </section>
+  
+  <script>
+  document.getElementById("symptom-form").addEventListener("submit", function(event) {
+    event.preventDefault();
+    const symptoms = [
+      document.getElementById("symptom1").value,
+      document.getElementById("symptom2").value,
+      document.getElementById("symptom3").value
+    ].filter(symptom => symptom.trim() !== "");
+  
+    if (symptoms.length === 0) {
+      alert("Please enter at least one symptom.");
+      return;
+    }
+  
+    document.getElementById("symptom-loader").style.display = "block";
+    document.getElementById("symptom-result").innerHTML = "";
+  
+    fetch("{% url 'analyze_symptoms' %}", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "X-CSRFToken": "{{ csrf_token }}" },
+      body: JSON.stringify({ symptoms: symptoms.join(", ") })
+    })
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById("symptom-loader").style.display = "none";
+      document.getElementById("symptom-result").innerHTML = `<h2>AI Insights</h2>
+        <p><strong>Disease:</strong> ${data.diagnosis}</p>
+        <p><strong>Severity:</strong> ${data.ai_insights.Severity}</p>
+        <p><strong>Treatment:</strong> ${data.ai_insights.Treatment}</p>
+        <p><strong>Diagnosis Required:</strong> ${data.ai_insights.Diagnosis}</p>`;
+    });
+  });
+
+    document.getElementById("photo-upload-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const fileInput = document.getElementById("photo-upload-input");
+    
+      if (fileInput.files.length === 0) {
+        alert("Please upload an image.");
+        return;
+      }
+    
+      document.getElementById("photo-loader").style.display = "block";
+      document.getElementById("photo-result").innerHTML = "";
+    
+      const formData = new FormData();
+      formData.append("skin_image", fileInput.files[0]);
+    
+      fetch("{% url 'analyze_skin' %}", {
+        method: "POST",
+        headers: { "X-CSRFToken": "{{ csrf_token }}" }, 
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById("photo-loader").style.display = "none";
+    
+        if (data.error) {
+          document.getElementById("photo-result").innerHTML = `<p style="color:red;">Error: ${data.error}</p>`;
+          console.error("❌ Server Error:", data.error);
+          return;
+        }
+    
+        document.getElementById("photo-result").innerHTML = `<h2>AI Insights</h2>
+          <p><strong>Diagnosis:</strong> ${data.skin_disease}</p>
+          <p><strong>Treatment:</strong> ${data.ai_insights.Treatment}</p>`;
+      })
+      .catch(error => {
+        document.getElementById("photo-loader").style.display = "none";
+        document.getElementById("photo-result").innerHTML = `<p style="color:red;">Error analyzing image.</p>`;
+        console.error("❌ Fetch error:", error);
+      });
+    });
+    
+  </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>Pet Buddy Login</title>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login to Pet Buddy</h2>
+        <form action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <br>
+            <button class="button">Login</button>
+        </form>
+        <p>New user? <a href="{% url 'register' %}">Register here</a></p>
+        
+        </div>          
+    </body>
+    </html>

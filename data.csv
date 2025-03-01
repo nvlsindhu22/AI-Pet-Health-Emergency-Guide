@@ -1,0 +1,47 @@
+Symptom1,Symptom2,Symptom3,Disease,Severity,Treatment,Diagnosis
+Vomiting,Diarrhea,Lethargy,Parvovirus,Severe,"IV fluids, anti-nausea meds, hospitalization",Yes
+Coughing,Sneezing,Nasal Discharge,Kennel Cough,Mild,"Rest, cough suppressants, antibiotics (if bacterial)",Sometimes
+Itching,Red Skin,Hair Loss,Flea Allergy Dermatitis,Moderate,"Flea treatment, anti-inflammatory meds",Sometimes
+Limping,Pain,Swelling,Arthritis,Moderate,"Pain relievers, joint supplements, weight management",Yes
+Excessive Thirst,Frequent Urination,Weight Loss,Diabetes,Severe,"Insulin therapy, dietary changes",Yes
+Loss of Appetite,Jaundice,Weakness,Liver Disease,Severe,"Dietary management, liver support meds",Yes
+Bad Breath,Gum Inflammation,Drooling,Dental Disease,Moderate,"Teeth cleaning, antibiotics, extractions",Yes
+Itchy Ears,Head Shaking,Ear Discharge,Ear Infection,Mild,"Ear drops, anti-inflammatory meds",Sometimes
+Swollen Abdomen,Weakness,Pale Gums,Bloat (GDV),Critical,"Emergency surgery, IV fluids",Yes
+Lethargy,Pale Gums,Collapse,Anemia,Severe,"Blood transfusion, treating underlying cause",Yes
+Vomiting,Dehydration,Weight Loss,Kidney Disease,Severe,"Fluids, kidney diet, medication",Yes
+Seizures,Stiff Movements,Disorientation,Epilepsy,Moderate,Anti-seizure medication,Yes
+Sneezing,Runny Nose,Eye Discharge,Canine Influenza,Mild,"Rest, fluids, supportive care",Sometimes
+Scratching,Skin Rash,Inflammation,Allergies,Mild,"Antihistamines, hypoallergenic diet",Sometimes
+Coughing,Lethargy,Weight Loss,Heartworm Disease,Severe,Heartworm treatment injections,Yes
+Frequent Urination,Blood in Urine,Pain,Urinary Tract Infection (UTI),Mild,"Antibiotics, increased water intake",Sometimes
+Hair Loss,Black Patches on Skin,Weight Gain,Hypothyroidism,Moderate,Thyroid hormone supplements,Yes
+Excessive Panting,Restlessness,Vomiting,Heat Stroke,Critical,"Cooling measures, IV fluids",Yes
+Sudden Weakness,Pale Gums,Labored Breathing,Tick-Borne Disease,Severe,"Antibiotics, supportive care",Yes
+Coughing,Fainting,Exercise Intolerance,Heart Disease,Severe,"Medications, lifestyle changes",Yes
+Hair Loss,Dry Skin,Dull Coat,Cushing’s Disease,Moderate,"Hormone therapy, dietary changes",Yes
+Weight Loss,Vomiting,Diarrhea,Intestinal Worms,Moderate,Deworming medication,Sometimes
+Lameness,Fever,Joint Swelling,Lyme Disease,Moderate,Antibiotics,Yes
+Sudden Blindness,Disorientation,Dilated Pupils,Glaucoma,Severe,"Eye drops, surgery (if needed)",Yes
+Bloody Stool,Lethargy,Vomiting,Hemorrhagic Gastroenteritis,Severe,"IV fluids, antibiotics",Yes
+Excessive Drooling,Difficulty Swallowing,Gagging,Megaesophagus,Severe,"Dietary changes, feeding adjustments",Yes
+Aggression,Dilated Pupils,Seizures,Rabies,Critical,"No cure, euthanasia required",Yes (Mandatory)
+Weight Gain,Hair Loss,Lethargy,Hypothyroidism,Moderate,Thyroid hormone replacement therapy,Yes
+Difficulty Breathing,Snorting,Sleep Disturbance,Brachycephalic Syndrome,Severe,"Surgery, weight management",Yes
+Skin Lesions,Itching,Thickened Skin,Mange,Moderate,"Medicated baths, antiparasitic treatment",Yes
+Cloudy Eyes,Vision Loss,Eye Discharge,Cataracts,Moderate,Surgery (if needed),Yes
+Lack of Coordination,Head Tilt,Rapid Eye Movement,Vestibular Disease,Moderate,"Supportive care, medications",Sometimes
+Loss of Appetite,Vomiting,Blood in Stool,Pancreatitis,Severe,"IV fluids, pain management, diet change",Yes
+Swollen Face,Hives,Difficulty Breathing,Anaphylactic Shock,Critical,"Emergency vet care, antihistamines",Yes
+Open Sores,Crusting Skin,Hair Loss,Pyoderma,Moderate,"Antibiotics, medicated shampoos",Yes
+Painful Urination,Blood in Urine,Frequent Urination,Bladder Stones,Severe,"Surgery, dietary management",Yes
+Uncontrolled Bleeding,Lethargy,Bruising,Von Willebrand’s Disease,Severe,"Blood transfusion, clotting medications",Yes
+Coughing,Lethargy,Fever,Pneumonia,Severe,"Antibiotics, oxygen therapy",Yes
+Swelling,Hair Loss,Non-healing Wounds,Cancer,Critical,"Surgery, chemotherapy, radiation",Yes
+Loss of Appetite,Weight Loss,Enlarged Lymph Nodes,Lymphoma,Severe,Chemotherapy,Yes
+Sudden Collapse,Weakness,Irregular Heartbeat,Cardiomyopathy,Critical,"Medications, lifestyle changes",Yes
+Excessive Scratching,Ear Odor,Dark Ear Discharge,Yeast Infection,Moderate,"Antifungal drops, ear cleaning",Sometimes
+Nasal Discharge,Swollen Nose,Sneezing,Nasal Tumor,Severe,"Surgery, radiation",Yes
+Head Shaking,Loss of Balance,Vomiting,Inner Ear Infection,Moderate,"Antibiotics, anti-inflammatory medication",Yes
+Change in Bark,Difficulty Breathing,Weight Loss,Laryngeal Paralysis,Severe,Surgery (if needed),Yes
+Anxiety,Pacing,Excessive Licking,Obsessive-Compulsive Disorder,Moderate,"Behavior therapy, medications",Sometimes

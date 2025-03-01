@@ -1,0 +1,233 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/health.css' %}">
+  <link rel="stylesheet" href="{% static 'css/chatbot.css' %}">
+  <title>Pet Emergency Assistant</title>
+  <!-- Google Maps API -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+</head>
+
+<body>
+  <!-- Header -->
+  <section id="header">
+    <div class="header container">
+      <div class="nav-bar">
+        <div class="brand">
+          <a href="#hero">
+            <h1>Pet BUDDY</h1> 
+          </a>
+        </div>
+        <div class="nav-list">
+          <ul>
+            <li><a href="{% url 'base' %}">Home</a></li>
+            <li><a href="#emergency-contact">Emergency Contact</a></li>
+            <li><a href="#health-status">Health Status</a></li>
+            <li><a href="#emergency-tips">Emergency Tips</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <div class="hero container">
+      <div>
+        <h1>Welcome to <span>Pet Emergency Assistant</span></h1>
+        <h2>Quick help for your pet in emergencies</h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- Emergency Contact Section -->
+  <section id="emergency-contact">
+    <div class="emergency-contact container">
+      <h1 class="section-title">Emergency <span>Contact</span></h1>
+      <p>Find nearby emergency vets and clinics for your pet's urgent needs.</p>
+      <div class="contact-info">
+        <div class="contact-item">
+          <h2>Emergency Vet</h2>
+          <p>Dr. Jane Doe - 123 Pet Street, Pet City</p>
+          <p>Phone: <strong>(123) 456-7890</strong></p>
+          <button class="btn">Call Now</button>
+          <!-- Embed Google Map for this location -->
+          <div id="emergency-vet-map" style="width: 100%; height: 400px;"></div>
+        </div>
+        <div class="contact-item">
+          <h2>Nearby Clinic</h2>
+          <p>PetCare Clinic - 456 Animal Avenue, Pet City</p>
+          <p>Phone: <strong>(987) 654-3210</strong></p>
+          <button class="btn">Call Now</button>
+          <!-- Embed Google Map for this location -->
+          <div id="clinic-map" style="width: 100%; height: 400px;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Health Status Section -->
+  <section id="health-status">
+    <div class="health-status container">
+      <h1 class="section-title">Health <span>Status</span></h1>
+      <p>Quickly assess your pet's condition and get immediate steps for care.</p>
+      <div class="status">
+        <div class="status-item">
+          <h2>Breathing Difficulty</h2>
+          <p>Immediate steps: Keep your pet calm and transport to the nearest emergency vet.</p>
+        </div>
+        <div class="status-item">
+          <h2>Bleeding</h2>
+          <p>Immediate steps: Apply pressure to the wound, keep your pet still, and go to the vet immediately.</p>
+        </div>
+        <div class="status-item">
+          <h2>Poisoning</h2>
+          <p>Immediate steps: Call the emergency vet or poison control, and bring your pet to the clinic right away.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Emergency Tips Section -->
+  <section id="emergency-tips">
+    <div class="emergency-tips container">
+      <h1 class="section-title">Emergency <span>Tips</span></h1>
+      <p>Get quick tips to manage emergencies until help arrives.</p>
+      <div class="tips">
+        <div class="tip-item">
+          <h2>Tip 1: Stay Calm</h2>
+          <p>In any emergency, staying calm is key to making clear decisions and caring for your pet.</p>
+        </div>
+        <div class="tip-item">
+          <h2>Tip 2: Have First Aid Supplies Ready</h2>
+          <p>Always keep a pet first-aid kit handy with essentials like gauze, bandages, and antiseptic wipes.</p>
+        </div>
+        <div class="tip-item">
+          <h2>Tip 3: Know Emergency Contact Info</h2>
+          <p>Store important emergency contacts such as the nearest emergency vet or animal poison control in your phone.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Chatbot Icon Section -->
+<div id="chatbot-icon" onclick="openChatbot()">
+  <img src="..\static\images\chat.png" alt="Chatbot" class="chat-icon">
+  <img src="..\static\images\paw.png" alt="Paw Icon" class="paw-icon">
+</div>
+
+<!-- Chatbot Modal -->
+<div id="chatbot-modal" class="chatbot-modal">
+  <div class="chatbot-container">
+    <header id="chatbot-header">
+      <button onclick="closeChatbot()" class="back-btn">Close</button>
+      <h1>Chat with Pet Assistant</h1>
+    </header>
+    <div id="messages" class="messages">
+      <!-- Chat messages will appear here -->
+    </div>
+    <div class="input-container">
+      <input type="text" id="user-input" placeholder="Ask me about pet emergencies, health, or tips..." />
+      <button id="send-btn">Send</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const sendButton = document.getElementById('send-btn');
+  const userInput = document.getElementById('user-input');
+  const messagesContainer = document.getElementById('messages');
+  const chatbotModal = document.getElementById('chatbot-modal');
+
+  // Function to open the chatbot modal
+  function openChatbot() {
+    chatbotModal.style.display = 'block';
+  }
+
+  // Function to close the chatbot modal
+  function closeChatbot() {
+    chatbotModal.style.display = 'none';
+  }
+
+  // Function to send message to the chat
+  function sendMessage() {
+    const userMessage = userInput.value.trim();
+    if (userMessage) {
+      // Display user message
+      const userMessageElement = document.createElement('div');
+      userMessageElement.classList.add('user-message');
+      userMessageElement.innerHTML = `<p>${userMessage}</p>`;
+      messagesContainer.appendChild(userMessageElement);
+      
+      // Scroll to bottom
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+      // Clear input field
+      userInput.value = '';
+
+      // Simulate chatbot response (This would be connected to AI later)
+      setTimeout(() => {
+        const botMessageElement = document.createElement('div');
+        botMessageElement.classList.add('bot-message');
+        botMessageElement.innerHTML = `<p>Sorry, I am still learning! How can I assist you with your pet?</p>`;
+        messagesContainer.appendChild(botMessageElement);
+
+        // Scroll to bottom
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }, 1000);
+    }
+  }
+
+  // Send message on button click
+  sendButton.addEventListener('click', sendMessage);
+
+  // Send message on Enter key press
+  userInput.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      sendMessage();
+    }
+  });
+</script>
+
+  <!-- Footer -->
+  <section id="footer">
+    <div class="footer container">
+      <p>© 2025 Pet Emergency Assistant. All rights reserved.</p>
+    </div>
+  </section>
+
+  <!-- JavaScript -->
+  <script>
+    function initMap() {
+      // Emergency Vet Location
+      const emergencyVetLocation = { lat: 40.712776, lng: -74.005974 };
+      const emergencyVetMap = new google.maps.Map(document.getElementById("emergency-vet-map"), {
+        zoom: 15,
+        center: emergencyVetLocation,
+      });
+      new google.maps.Marker({
+        position: emergencyVetLocation,
+        map: emergencyVetMap,
+        title: "Emergency Vet",
+      });
+
+      // Clinic Location
+      const clinicLocation = { lat: 40.713776, lng: -74.006974 };
+      const clinicMap = new google.maps.Map(document.getElementById("clinic-map"), {
+        zoom: 15,
+        center: clinicLocation,
+      });
+      new google.maps.Marker({
+        position: clinicLocation,
+        map: clinicMap,
+        title: "PetCare Clinic",
+      });
+    }
+  </script>
+</body>
+
+</html>

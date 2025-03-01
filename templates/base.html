@@ -1,0 +1,240 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">
+  <link rel="stylesheet" href="{% static 'css/chatbot.css' %}">
+  <title>Pet Emergency Assistant with AI</title>
+</head>
+
+<body>
+  <!-- Header -->
+  <section id="header">
+    <div class="header container">
+      <div class="nav-bar">
+        <div class="brand">
+          <a href="#hero">
+            <h1><span>Pet</span> <span>BUDDY</span></h1>
+          </a>
+        </div>
+        <div class="nav-list">
+          <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about-us">About Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+          </ul>
+        </div>
+        <div class="search-bar">
+          <input type="text" placeholder="Search..." id="search">
+          <button type="submit">Search</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Hero Section -->
+  <section id="hero">
+    <div class="hero container">
+      <div>
+        {% if user.is_authenticated %}
+    <h1>Welcome, {{ user.username }}!</h1>
+{% else %}
+    <script>
+        window.location.href = "{% url 'login' %}";
+    </script>
+{% endif %}
+        <a href="#services" class="cta">Explore Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+<section id="services">
+  <div class="services container">
+    <div class="service-top">
+      <h1 class="section-title">Our <span>Services</span></h1>
+      <p>Providing comprehensive care and assistance for your pets through AI-driven solutions.</p>
+    </div>
+    <br>
+    <div class="service-bottom">
+      <div class="service-item">
+        <div class="icon"><img src="..\static\images\pet1.png" alt="Pet Health Assistant"></div>
+        <h2><a href="{% url 'pet_health' %}">Pet Health Assistant</a></h2>
+        <p>Track your pet's health and receive timely reminders for vaccinations and checkups.</p>
+      </div>
+      <div class="service-item">
+        <div class="icon"><img src="..\static\images\pet2.png" alt="Emergency Assistance"></div>
+        <h2><a href="{% url 'emergency' %}">Emergency Assistance</a></h2>
+        <p>AI-powered tools to help you respond to pet emergencies quickly and effectively.</p>
+      </div>
+      <div class="service-item">
+        <div class="icon"><img src="..\static\images\pet3.png" alt="AI Training Tips"></div>
+        <h2><a href="{% url 'ai_training' %}">AI Training Tips</a></h2>
+        <p>Personalized AI-generated training tips to improve your pet’s behavior and well-being.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+  
+  <!-- About Us Section -->
+  <section id="about-us">
+    <div class="about-us-container">
+        <h1 class="section-title">Welcome to Pet Emergency Assistant!</h1>
+        <p class="intro">Where Technology Meets Pet Care</p>
+        <div class="about-content">
+            <div class="about-left">
+                <h2>Our Mission</h2>
+                <p>We are a passionate team of <strong>pet lovers</strong>, <strong>tech enthusiasts</strong>, and <strong>health advocates</strong> who believe in the power of innovation to revolutionize pet care. Our vision is simple: to create a healthier, happier, and safer life for pets through the integration of <strong>Artificial Intelligence (AI)</strong>, <strong>smart technologies</strong>, and a deep understanding of animal health and well-being.</p>
+            </div>
+            <div class="about-right">
+                <h2>Why Choose Us?</h2>
+                <ul>
+                    <li><strong>AI-Powered Health Assistance</strong>: Track your pet's health data with timely reminders for vaccinations and checkups.</li>
+                    <li><strong>Instant Emergency Help</strong>: Quick access to veterinary clinics, first-aid tips, and 24/7 emergency assistance.</li>
+                    <li><strong>Personalized Pet Profiles</strong>: Create detailed profiles for your pets to track their health and receive customized care plans.</li>
+                    <li><strong>Trusted by Pet Parents Everywhere</strong>: Thousands of pet parents trust us to help care for their furry friends.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="about-footer">
+            <h2>Our Promise to You</h2>
+            <p>We are committed to providing reliable information, building a caring community, and continuously improving our services to ensure the health and happiness of your pets.</p>
+            <button class="cta-btn">Join Us in Creating a Better Future for Pets</button>
+        </div>
+    </div>
+</section>
+
+  <!-- Contact Section -->
+<section id="contact">
+  <div class="contact-container">
+      <h1 class="section-title">Get in Touch with <span>Us</span></h1>
+      <p class="contact-description">We'd love to hear from you! Whether you have a question or need assistance, we're here to help.</p>
+      <div class="contact-items">
+          <div class="contact-item">
+              <div class="icon">
+                  <img src="https://img.icons8.com/bubbles/100/phone.png" alt="Phone">
+              </div>
+              <h2>Phone</h2>
+              <p>+1 234 567 890</p>
+          </div>
+          <div class="contact-item">
+              <div class="icon">
+                  <img src="https://img.icons8.com/bubbles/100/email.png" alt="Email">
+              </div>
+              <h2>Email</h2>
+              <p>support@petassistant.com</p>
+          </div>
+          <div class="contact-item">
+              <div class="icon">
+                  <img src="https://img.icons8.com/bubbles/100/map-pin.png" alt="Location">
+              </div>
+              <h2>Our Location</h2>
+              <p>123 Pet Avenue, Pet City, PCT 98765</p>
+          </div>
+      </div>
+      <div class="contact-form-container">
+        <h2 class="form-title">Contact Us</h2>
+        <form action="#" method="POST" class="contact-form">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+    </div>
+  </div>
+</section>
+<!-- Chatbot Icon Section -->
+<div id="chatbot-icon" onclick="openChatbot()">
+  <img src="..\static\images\chat.png" alt="Chatbot" class="chat-icon">
+  <img src="..\static\images\paw.png" alt="Paw Icon" class="paw-icon">
+</div>
+
+<!-- Chatbot Modal -->
+<div id="chatbot-modal" class="chatbot-modal">
+  <div class="chatbot-container">
+    <header id="chatbot-header">
+      <button onclick="closeChatbot()" class="back-btn">Close</button>
+      <h1>Chat with Pet Assistant</h1>
+    </header>
+    <div id="messages" class="messages">
+      <!-- Chat messages will appear here -->
+    </div>
+    <div class="input-container">
+      <input type="text" id="user-input" placeholder="Ask me about pet emergencies, health, or tips..." />
+      <button id="send-btn">Send</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const sendButton = document.getElementById('send-btn');
+  const userInput = document.getElementById('user-input');
+  const messagesContainer = document.getElementById('messages');
+  const chatbotModal = document.getElementById('chatbot-modal');
+
+  // Function to open the chatbot modal
+  function openChatbot() {
+    chatbotModal.style.display = 'block';
+  }
+
+  // Function to close the chatbot modal
+  function closeChatbot() {
+    chatbotModal.style.display = 'none';
+  }
+
+  // Function to send message to the chat
+  function sendMessage() {
+    const userMessage = userInput.value.trim();
+    if (userMessage) {
+      // Display user message
+      const userMessageElement = document.createElement('div');
+      userMessageElement.classList.add('user-message');
+      userMessageElement.innerHTML = `<p>${userMessage}</p>`;
+      messagesContainer.appendChild(userMessageElement);
+      
+      // Scroll to bottom
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+      // Clear input field
+      userInput.value = '';
+
+      // Simulate chatbot response (This would be connected to AI later)
+      setTimeout(() => {
+        const botMessageElement = document.createElement('div');
+        botMessageElement.classList.add('bot-message');
+        botMessageElement.innerHTML = `<p>Sorry, I am still learning! How can I assist you with your pet?</p>`;
+        messagesContainer.appendChild(botMessageElement);
+
+        // Scroll to bottom
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }, 1000);
+    }
+  }
+
+  // Send message on button click
+  sendButton.addEventListener('click', sendMessage);
+
+  // Send message on Enter key press
+  userInput.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      sendMessage();
+    }
+  });
+</script>
+
+  <!-- Footer -->
+  <section id="footer">
+    <div class="footer container">
+      <p>© 2025 Pet Emergency Assistant. All rights reserved.</p>
+    </div>
+  </section>
+</body>
+
+</html>

@@ -1,0 +1,153 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Training Assistant</title>
+    <link rel="stylesheet" href="{% static 'css/training_tips.css' %}">
+  <link rel="stylesheet" href="{% static 'css/chatbot.css' %}">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container nav-bar">
+            <div class="brand">
+                <h1>Pet BUDDY</h1>
+            </div>
+            <nav class="nav-list">
+                <ul>
+                  <li><a href="{% url 'base' %}">Home</a></li>
+                    <li><a href="#chatbot">Chatbot</a></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!-- Hero Section -->
+  <section id="hero">
+    <div class="hero container">
+      <div>
+        <h1>Welcome to <span>Pet Training Assistant</span></h1>
+        <h2>Your pet's health, powered by AI</h2>
+      </div>
+    </div>
+  </section>
+
+    <!-- AI Training Tips Section -->
+    <section id="tips">
+        <div class="box-container">
+            <h2>Select Your Training Goal</h2>
+            <form id="training-form">
+                <label for="goal">Choose a Training Area:</label>
+                <select id="goal">
+                    <<option value="select">Select Training Area</option>
+                    <option value="obedience">Obedience Training</option>
+                    <option value="behavioral">Behavioral Training</option>
+                    <option value="agility">Agility Training</option>
+                    <option value="potty-training">Potty Training</option>
+                    <option value="leash-walking">Leash Walking</option>
+                    <option value="socialization">Socialization Training</option>
+                    <option value="trick-training">Trick Training</option>
+                    <option value="puppy-training">Puppy Training</option>
+                </select>
+                
+                <button id="generate-tips">Generate Tips</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Customized Training Tips Section -->
+    <section id="customized-tips">
+        <div class="box-container">
+            <h2>Customized Training Tips</h2>
+            <p>AI-generated tips tailored to your pet’s needs will appear here.</p>
+        </div>
+    </section>
+<!-- Chatbot Icon Section -->
+<div id="chatbot-icon" onclick="openChatbot()">
+    <img src="..\static\images\chat.png" alt="Chatbot" class="chat-icon">
+    <img src="..\static\images\paw.png" alt="Paw Icon" class="paw-icon">
+  </div>
+  
+  <!-- Chatbot Modal -->
+  <div id="chatbot-modal" class="chatbot-modal">
+    <div class="chatbot-container">
+      <header id="chatbot-header">
+        <button onclick="closeChatbot()" class="back-btn">Close</button>
+        <h1>Chat with Pet Assistant</h1>
+      </header>
+      <div id="messages" class="messages">
+        <!-- Chat messages will appear here -->
+      </div>
+      <div class="input-container">
+        <input type="text" id="user-input" placeholder="Ask me about pet emergencies, health, or tips..." />
+        <button id="send-btn">Send</button>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    const sendButton = document.getElementById('send-btn');
+    const userInput = document.getElementById('user-input');
+    const messagesContainer = document.getElementById('messages');
+    const chatbotModal = document.getElementById('chatbot-modal');
+  
+    // Function to open the chatbot modal
+    function openChatbot() {
+      chatbotModal.style.display = 'block';
+    }
+  
+    // Function to close the chatbot modal
+    function closeChatbot() {
+      chatbotModal.style.display = 'none';
+    }
+  
+    // Function to send message to the chat
+    function sendMessage() {
+      const userMessage = userInput.value.trim();
+      if (userMessage) {
+        // Display user message
+        const userMessageElement = document.createElement('div');
+        userMessageElement.classList.add('user-message');
+        userMessageElement.innerHTML = `<p>${userMessage}</p>`;
+        messagesContainer.appendChild(userMessageElement);
+        
+        // Scroll to bottom
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  
+        // Clear input field
+        userInput.value = '';
+  
+        // Simulate chatbot response (This would be connected to AI later)
+        setTimeout(() => {
+          const botMessageElement = document.createElement('div');
+          botMessageElement.classList.add('bot-message');
+          botMessageElement.innerHTML = `<p>Sorry, I am still learning! How can I assist you with your pet?</p>`;
+          messagesContainer.appendChild(botMessageElement);
+  
+          // Scroll to bottom
+          messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }, 1000);
+      }
+    }
+  
+    // Send message on button click
+    sendButton.addEventListener('click', sendMessage);
+  
+    // Send message on Enter key press
+    userInput.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    });
+  </script>
+  
+    
+    <!-- Footer -->
+    <footer id="footer">
+        <p>&copy; 2025 Pet Emergency Assistant | All Rights Reserved</p>
+    </footer>
+    <script src="..\static\js\training_tips.js"></script>
+</body>
+</html>
